@@ -4,26 +4,26 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
+class ExpensesController extends GetxController{
+  List expenses = [];
+  List expensesToday = [];
+  List expensesDates = [];
+  List datesRequested = [];
 
-class PaymentsController extends GetxController{
-  List payments = [];
-  List paymentsToday = [];
-  List paymentDates = [];
-  List datesPaid = [];
-
-  String driverId = "";
+  String userId = "";
   String amount = "";
-  String title = "";
-  bool read = false;
-  String datePaid = "";
-  String timePaid = "";
+  String reason = "";
+  String requestStatus = "";
+
+  String dateRequested = "";
+  String timeRequested = "";
   bool isLoading = true;
 
 
-  Future<void> getDetailPayment(String id) async {
+  Future<void> getDetailExpense(String id) async {
     try {
       isLoading = true;
-      final walletUrl = "https://taxinetghana.xyz/admin_get_payment_detail/$id/";
+      final walletUrl = "https://taxinetghana.xyz/expense_detail/$id/";
       var link = Uri.parse(walletUrl);
       http.Response response = await http.get(link, headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -31,18 +31,15 @@ class PaymentsController extends GetxController{
       if (response.statusCode == 200) {
         final codeUnits = response.body;
         var jsonData = jsonDecode(codeUnits);
-        driverId = jsonData['driver'].toString();
+        userId = jsonData['user'].toString();
         amount = jsonData['amount'].toString();
-        title = jsonData['title'];
-        read = jsonData['read'];
-        datePaid = jsonData['date_paid'];
-        timePaid = jsonData['time_paid'];
+        reason = jsonData['reason'];
+        requestStatus = jsonData['request_status'];
+        dateRequested = jsonData['date_requested'];
+        timeRequested = jsonData['time_requested'];
         update();
       }
       else{
-        if (kDebugMode) {
-          print("this is coming from the schedule detail ${response.body}");
-        }
         if (kDebugMode) {
           print("this is coming from the schedule detail ${response.body}");
         }
@@ -56,20 +53,20 @@ class PaymentsController extends GetxController{
     }
   }
 
-  Future<void> getAllPayments() async {
+  Future<void> getAllExpenses() async {
     try {
       isLoading = true;
-      const walletUrl = "https://taxinetghana.xyz/get_all_payments_today/";
+      const walletUrl = "https://taxinetghana.xyz/get_all_expenses/";
       var link = Uri.parse(walletUrl);
       http.Response response = await http.get(link, headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       });
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
-        payments.assignAll(jsonData);
-        for(var i in payments){
-          if(!paymentDates.contains(i['date_paid'])){
-            paymentDates.add(i['date_paid']);
+        expenses.assignAll(jsonData);
+        for(var i in expenses){
+          if(!expensesDates.contains(i['date_requested'])){
+            expensesDates.add(i['date_requested']);
           }
         }
         update();
@@ -83,17 +80,17 @@ class PaymentsController extends GetxController{
     }
   }
 
-  Future<void> getAllPaymentsToday() async {
+  Future<void> getAllExpensesToday() async {
     try {
       isLoading = true;
-      const walletUrl = "https://taxinetghana.xyz/get_payments_today/";
+      const walletUrl = "https://taxinetghana.xyz/get_expenses_today/";
       var link = Uri.parse(walletUrl);
       http.Response response = await http.get(link, headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       });
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
-        paymentsToday.assignAll(jsonData);
+        expensesToday.assignAll(jsonData);
         update();
       }
     } catch (e) {
@@ -105,17 +102,17 @@ class PaymentsController extends GetxController{
     }
   }
 
-  Future<void> getPaymentsByDate(String datePaid) async {
+  Future<void> getExpenseByDate(String dateRequested) async {
     try {
       isLoading = true;
-      final walletUrl = "https://taxinetghana.xyz/admin_get_all_drivers_payments_by_date/$datePaid/";
+      final walletUrl = "https://taxinetghana.xyz/get_expenses_get_by_date/$dateRequested/";
       var link = Uri.parse(walletUrl);
       http.Response response = await http.get(link, headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       });
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
-        datesPaid.assignAll(jsonData);
+        datesRequested.assignAll(jsonData);
         update();
       }
     } catch (e) {
@@ -126,5 +123,4 @@ class PaymentsController extends GetxController{
       isLoading = false;
     }
   }
-
 }

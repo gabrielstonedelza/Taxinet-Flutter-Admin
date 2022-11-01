@@ -14,22 +14,6 @@ class WalletController extends GetxController{
 
 
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    if (storage.read("userToken") != null) {
-      uToken = storage.read("userToken");
-    }
-    if (storage.read("username") != null) {
-      username = storage.read("username");
-    }
-    // getUserWallet();
-    // _timer = Timer.periodic(const Duration(seconds: 20), (timer) {
-    //   getUserWallet();
-    //   update();
-    // });
-  }
   Future<void> getAllWallet() async {
     try {
       isLoading = true;

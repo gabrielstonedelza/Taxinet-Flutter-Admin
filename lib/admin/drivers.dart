@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import "package:flutter/material.dart";
 import "package:get/get.dart";
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:taxinet_admin/admin/searchdriver.dart';
 import '../constants/app_colors.dart';
 import '../controller/requestscontroller.dart';
 import '../controller/userscontrollers.dart';
@@ -40,6 +41,14 @@ class _AllDriversState extends State<AllDrivers> {
               },
               icon:const Icon(Icons.arrow_back,color:defaultTextColor2)
           ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Get.to(()=> const SearchDriver());
+                },
+                icon:const Icon(Icons.search,color:defaultTextColor2)
+            )
+          ],
         ),
         body: ListView.builder(
           itemCount: controller.allDrivers != null ? controller.allDrivers.length : 0,
@@ -129,11 +138,6 @@ class _AllDriversState extends State<AllDrivers> {
                 ),
                 title: Text(items['get_drivers_full_name']),
                 subtitle: Text(items['username']),
-                // trailing: CachedNetworkImage(
-                //   imageUrl: items['driver_profile_pic'],
-                //   placeholder: (context, url) => const CircularProgressIndicator(),
-                //   errorWidget: (context, url, error) => const Icon(Icons.error),
-                // ),
               ),
             );
           },

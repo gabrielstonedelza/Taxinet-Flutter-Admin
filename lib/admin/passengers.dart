@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:get/get.dart";
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:taxinet_admin/admin/searchpassenger.dart';
 import '../constants/app_colors.dart';
 import '../controller/requestscontroller.dart';
 import '../controller/userscontrollers.dart';
@@ -37,6 +38,14 @@ class _PassengersState extends State<Passengers> {
               },
               icon:const Icon(Icons.arrow_back,color:defaultTextColor2)
           ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Get.to(()=> const SearchPassenger());
+                },
+                icon:const Icon(Icons.search,color:defaultTextColor2)
+            )
+          ],
         ),
         body: ListView.builder(
           itemCount: controller.allPassengers != null ? controller.allPassengers.length : 0,

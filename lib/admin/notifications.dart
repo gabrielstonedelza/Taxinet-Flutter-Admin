@@ -3,10 +3,15 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:taxinet_admin/admin/wallets.dart';
 import '../../../constants/app_colors.dart';
 import '../controller/notificationcontroller.dart';
 import '../controller/usercontroller.dart';
 import '../shimmers/shimmerwidget.dart';
+import 'allexpenses.dart';
+import 'allinventories.dart';
+import 'allpayments.dart';
+import 'allrequests.dart';
 
 
 
@@ -44,7 +49,8 @@ class _NotificationsState extends State<Notifications> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Notifications"),
-          backgroundColor:primaryColor,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
         ),
         backgroundColor: primaryColor,
         body: ListView.builder(
@@ -64,7 +70,24 @@ class _NotificationsState extends State<Notifications> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child:items['read'] == "Read" ? ListTile(
+                          onTap: (){
+                            if(notificationController.allNotifications[index]['notification_title'] == "Payment Today"){
+                              Get.to(()=> const AllPayments());
+                            }
+                            if(notificationController.allNotifications[index]['notification_title'] == "Wants to load wallet"){
+                              Get.to(()=> const AllWallets());
+                            }
+                            if(notificationController.allNotifications[index]['notification_title'] == "New driver inventory"){
+                              Get.to(()=> const AllInventories());
+                            }
+                            if(notificationController.allNotifications[index]['notification_title'] == "New Expense Request"){
+                              Get.to(()=> const AllExpenses());
+                            }
+                            if(notificationController.allNotifications[index]['notification_title'] == "New Schedule Ride Request"){
+                              Get.to(()=> const AllRequests());
+                            }
 
+                          },
                           leading: const CircleAvatar(
                               backgroundColor: Colors.grey,
                               foregroundColor: Colors.white,
@@ -78,10 +101,25 @@ class _NotificationsState extends State<Notifications> {
                             padding: const EdgeInsets.only(bottom: 10.0),
                             child: Text(items['notification_message']),
                           ),
-                        ) :ListTile(
-                          // onTap: (){
-                          //   Get.offAll(() => const MyBottomNavigationBar());
-                          // },
+                        ) : ListTile(
+                          onTap: (){
+                            if(notificationController.allNotifications[index]['notification_title'] == "Payment Today"){
+                              Get.to(()=> const AllPayments());
+                            }
+                            if(notificationController.allNotifications[index]['notification_title'] == "Wants to load wallet"){
+                              Get.to(()=> const AllWallets());
+                            }
+                            if(notificationController.allNotifications[index]['notification_title'] == "New driver inventory"){
+                              Get.to(()=> const AllInventories());
+                            }
+                            if(notificationController.allNotifications[index]['notification_title'] == "New Expense Request"){
+                              Get.to(()=> const AllExpenses());
+                            }
+                            if(notificationController.allNotifications[index]['notification_title'] == "New Schedule Ride Request"){
+                              Get.to(()=> const AllRequests());
+                            }
+
+                          },
                           leading: const CircleAvatar(
                               backgroundColor: primaryColor,
                               foregroundColor: Colors.white,

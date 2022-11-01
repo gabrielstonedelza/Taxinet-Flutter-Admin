@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import "package:flutter/material.dart";
 import 'package:get/get.dart';
 import 'package:taxinet_admin/admin/scheduledetails.dart';
+import 'package:taxinet_admin/admin/searchrequests.dart';
 import 'package:taxinet_admin/controller/requestscontroller.dart';
 
 import '../constants/app_colors.dart';
@@ -33,6 +34,14 @@ class _AllUnReadSchedulesState extends State<AllUnReadSchedules> {
             },
             icon:const Icon(Icons.arrow_back,color:defaultTextColor1)
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(()=> const SearchRequests());
+              },
+              icon:const Icon(Icons.search,color:defaultTextColor2)
+          )
+        ],
       ),
       body: ListView.builder(
         itemCount: controller.allSchedules != null ? controller.allSchedules.length : 0,
