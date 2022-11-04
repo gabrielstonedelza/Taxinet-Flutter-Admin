@@ -8,6 +8,7 @@ import 'package:taxinet_admin/admin/passengers.dart';
 import 'package:taxinet_admin/admin/payments.dart';
 import 'package:taxinet_admin/admin/searchpage.dart';
 import 'package:taxinet_admin/admin/unreadschedules.dart';
+import 'package:taxinet_admin/admin/userregistration.dart';
 import 'package:taxinet_admin/admin/wallets.dart';
 import 'package:taxinet_admin/controller/paymentcontroller.dart';
 import 'package:http/http.dart' as http;
@@ -251,7 +252,7 @@ class _DashboardState extends State<Dashboard> {
                       child: Card(
                         elevation: 12,
                         child: Container(
-                          height:150,
+                          height:130,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)
@@ -277,7 +278,7 @@ class _DashboardState extends State<Dashboard> {
                       child: Card(
                         elevation: 12,
                         child: Container(
-                          height:150,
+                          height:130,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)
@@ -311,7 +312,7 @@ class _DashboardState extends State<Dashboard> {
                       child: Card(
                         elevation: 12,
                         child: Container(
-                          height:150,
+                          height:130,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)
@@ -337,7 +338,7 @@ class _DashboardState extends State<Dashboard> {
                       child: Card(
                         elevation: 12,
                         child: Container(
-                          height:150,
+                          height:130,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)
@@ -371,7 +372,7 @@ class _DashboardState extends State<Dashboard> {
                       child: Card(
                         elevation: 12,
                         child: Container(
-                          height:150,
+                          height:130,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)
@@ -397,7 +398,7 @@ class _DashboardState extends State<Dashboard> {
                       child: Card(
                         elevation: 12,
                         child: Container(
-                          height:150,
+                          height:130,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)
@@ -431,7 +432,7 @@ class _DashboardState extends State<Dashboard> {
                       child: Card(
                         elevation: 12,
                         child: Container(
-                          height:150,
+                          height:130,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)
@@ -452,13 +453,25 @@ class _DashboardState extends State<Dashboard> {
                   Expanded(
                     child: GestureDetector(
                       onTap: (){
-                        // Get.to(() => const AllWallets());
+                        Get.to(() => const Registration());
                       },
                       child: Card(
                         elevation: 12,
-                        child: Container(
-
-                        ),
+                          child: Container(
+                            height:130,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset("assets/images/register.png",width:42),
+                                  const SizedBox(height:20),
+                                  const Text("Register User",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),)
+                                ]
+                            ),
+                          ),
                       ),
                     ),
                   ),

@@ -61,7 +61,7 @@ class _AllUnReadSchedulesState extends State<AllUnReadSchedules> {
                     ),
                     child: ListTile(
                       leading:Image.asset("assets/images/clock.png",width:40,height: 40),
-                      title: Text(items['schedule_title'],style:const TextStyle(fontWeight: FontWeight.bold)),
+                      title: Text(items['get_passenger_name'],style:const TextStyle(fontWeight: FontWeight.bold)),
                         subtitle: Padding(
                           padding: const EdgeInsets.only(top:10.0),
                           child: Column(
@@ -74,7 +74,7 @@ class _AllUnReadSchedulesState extends State<AllUnReadSchedules> {
                           ),
                         ),
                       onTap: (){
-                        Get.to(()=> ScheduleDetail(slug:controller.allSchedules[index]['slug'],title:controller.allSchedules[index]['schedule_title'],id:controller.allSchedules[index]['id'].toString()));
+                        Get.to(()=> ScheduleDetail(slug:controller.allSchedules[index]['slug'],title:controller.allSchedules[index]['get_passenger_name'],id:controller.allSchedules[index]['id'].toString()));
                       },
                     ),
                   ) : Container(),

@@ -147,10 +147,10 @@ class _AllRequestsState extends State<AllRequests> {
                                                                 ),
                                                                 child: ListTile(
                                                                     onTap: (){
-                                                                      Get.to(()=> ScheduleDetail(slug:scheduleController.activeSchedules[index]['slug'],title:scheduleController.activeSchedules[index]['schedule_title'],id:scheduleController.allSchedules[index]['id'].toString()));
+                                                                      Get.to(()=> ScheduleDetail(slug:scheduleController.activeSchedules[index]['slug'],title:scheduleController.activeSchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
                                                                     },
                                                                     leading: const Icon(Icons.access_time_filled),
-                                                                    title: Text(items['schedule_title'],style:const TextStyle(fontWeight: FontWeight.bold)),
+                                                                    title: Text(items['get_passenger_name'],style:const TextStyle(fontWeight: FontWeight.bold)),
                                                                     subtitle: Padding(
                                                                       padding: const EdgeInsets.only(top:10.0),
                                                                       child: Column(
@@ -237,11 +237,11 @@ class _AllRequestsState extends State<AllRequests> {
                                                                     ),
                                                                     child: ListTile(
                                                                         onTap: (){
-                                                                          Get.to(()=> ScheduleDetail(slug:scheduleController.allOneTimeSchedules[index]['slug'],title:scheduleController.allOneTimeSchedules[index]['schedule_title'],id:scheduleController.allSchedules[index]['id'].toString()));
+                                                                          Get.to(()=> ScheduleDetail(slug:scheduleController.allOneTimeSchedules[index]['slug'],title:scheduleController.allOneTimeSchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
                                                                           // Navigator.pop(context);
                                                                         },
                                                                         leading: const Icon(Icons.access_time_filled),
-                                                                        title: Text(items['schedule_title'],style:const TextStyle(fontWeight: FontWeight.bold)),
+                                                                        title: Text(items['get_passenger_name'],style:const TextStyle(fontWeight: FontWeight.bold)),
                                                                         subtitle: Padding(
                                                                           padding: const EdgeInsets.only(top:10.0),
                                                                           child: Text(items['date_scheduled']),
@@ -325,10 +325,10 @@ class _AllRequestsState extends State<AllRequests> {
                                                                 ),
                                                                 child: ListTile(
                                                                     onTap: (){
-                                                                      Get.to(()=> ScheduleDetail(slug:scheduleController.allDailySchedules[index]['slug'],title:scheduleController.allDailySchedules[index]['schedule_title'],id:scheduleController.allSchedules[index]['id'].toString()));
+                                                                      Get.to(()=> ScheduleDetail(slug:scheduleController.allDailySchedules[index]['slug'],title:scheduleController.allDailySchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
                                                                     },
                                                                     leading: const Icon(Icons.access_time_filled),
-                                                                    title: Text(items['schedule_title'],style:const TextStyle(fontWeight: FontWeight.bold)),
+                                                                    title: Text(items['get_passenger_name'],style:const TextStyle(fontWeight: FontWeight.bold)),
                                                                     subtitle: Padding(
                                                                       padding: const EdgeInsets.only(top:10.0),
                                                                       child: Text(items['date_scheduled']),
@@ -404,10 +404,10 @@ class _AllRequestsState extends State<AllRequests> {
                                                                 ),
                                                                 child: ListTile(
                                                                     onTap: (){
-                                                                      Get.to(()=> ScheduleDetail(slug:scheduleController.allDaysSchedules[index]['slug'],title:scheduleController.allDaysSchedules[index]['schedule_title'],id:scheduleController.allSchedules[index]['id'].toString()));
+                                                                      Get.to(()=> ScheduleDetail(slug:scheduleController.allDaysSchedules[index]['slug'],title:scheduleController.allDaysSchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
                                                                     },
                                                                     leading: const Icon(Icons.access_time_filled),
-                                                                    title: Text(items['schedule_title'],style:const TextStyle(fontWeight: FontWeight.bold)),
+                                                                    title: Text(items['get_passenger_name'],style:const TextStyle(fontWeight: FontWeight.bold)),
                                                                     subtitle: Padding(
                                                                       padding: const EdgeInsets.only(top:10.0),
                                                                       child: Text(items['date_scheduled']),
@@ -493,11 +493,11 @@ class _AllRequestsState extends State<AllRequests> {
                                                                     ),
                                                                     child: ListTile(
                                                                         onTap: (){
-                                                                          Get.to(()=> ScheduleDetail(slug:scheduleController.allWeeklySchedules[index]['slug'],title:scheduleController.allWeeklySchedules[index]['schedule_title'],id:scheduleController.allSchedules[index]['id'].toString()));
+                                                                          Get.to(()=> ScheduleDetail(slug:scheduleController.allWeeklySchedules[index]['slug'],title:scheduleController.allWeeklySchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
                                                                           // Navigator.pop(context);
                                                                         },
                                                                         leading: const Icon(Icons.access_time_filled),
-                                                                        title: Text(items['schedule_title'],style:const TextStyle(fontWeight: FontWeight.bold)),
+                                                                        title: Text(items['get_passenger_name'],style:const TextStyle(fontWeight: FontWeight.bold)),
                                                                         subtitle: Padding(
                                                                           padding: const EdgeInsets.only(top:10.0),
                                                                           child: Text(items['date_scheduled']),
@@ -576,11 +576,11 @@ class _AllRequestsState extends State<AllRequests> {
                                                                     ),
                                                                     child: ListTile(
                                                                         onTap: (){
-                                                                          Get.to(()=> ScheduleDetail(slug:scheduleController.allMonthlySchedules[index]['slug'],title:scheduleController.allMonthlySchedules[index]['schedule_title'],id:scheduleController.allSchedules[index]['id'].toString()));
+                                                                          Get.to(()=> ScheduleDetail(slug:scheduleController.allMonthlySchedules[index]['slug'],title:scheduleController.allMonthlySchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
                                                                           // Navigator.pop(context);
                                                                         },
                                                                         leading: const Icon(Icons.access_time_filled),
-                                                                        title: Text(items['schedule_title'],style:const TextStyle(fontWeight: FontWeight.bold)),
+                                                                        title: Text(items['get_passenger_name'],style:const TextStyle(fontWeight: FontWeight.bold)),
                                                                         subtitle: Padding(
                                                                           padding: const EdgeInsets.only(top:10.0),
                                                                           child: Text(items['date_scheduled']),

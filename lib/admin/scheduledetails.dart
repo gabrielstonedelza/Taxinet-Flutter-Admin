@@ -72,8 +72,8 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
 
   RequestController controller = Get.find();
 
-  Future<void> getDetailSchedule(String slug) async {
-    final walletUrl = "https://taxinetghana.xyz/admin_request_detail/$slug/";
+  Future<void> getDetailSchedule() async {
+    final walletUrl = "https://taxinetghana.xyz/admin_request_detail/$id/";
     var link = Uri.parse(walletUrl);
     http.Response response = await http.get(link, headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -87,8 +87,6 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
       passengerWithSchedule = jsonData['get_passenger_name'];
       // passengerPic = jsonData['get_passenger_profile_pic'];
       scheduleType = jsonData['schedule_type'];
-      schedulePriority = jsonData['schedule_priority'];
-      description = jsonData['schedule_description'];
       rideType = jsonData['ride_type'];
       pickUpLocation = jsonData['pickup_location'];
       dropOffLocation = jsonData['drop_off_location'];
@@ -124,13 +122,14 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
     if (storage.read("username") != null) {
       username = storage.read("username");
     }
-    getDetailSchedule(slug);
+    getDetailSchedule();
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: primaryColor,
         appBar: AppBar(
           title: Text(title, style: const TextStyle(color: defaultTextColor2)),
           centerTitle: true,
@@ -275,14 +274,7 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
                                 children: [
                                   Row(
                                     children: [
-                                      // CircleAvatar(
-                                      //   backgroundImage:
-                                      //   NetworkImage(driversPic),
-                                      //   radius: 30,
-                                      // ),
-                                      // const SizedBox(
-                                      //   width: 20,
-                                      // ),
+
                                       Text(
                                           "${assignedDriver.toString().capitalize}",
                                           style: const TextStyle(
@@ -312,14 +304,7 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
                                 children: [
                                   Row(
                                     children: [
-                                      // CircleAvatar(
-                                      //   backgroundImage:
-                                      //   NetworkImage(passengerPic),
-                                      //   radius: 30,
-                                      // ),
-                                      // const SizedBox(
-                                      //   width: 20,
-                                      // ),
+
                                       Text(
                                           "${passengerWithSchedule.toString().capitalize}",
                                           style: const TextStyle(
@@ -369,34 +354,7 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
                               const SizedBox(height: 10),
                               Text(scheduleType)
                             ]),
-                        const SizedBox(height: 10),
-                        const Divider(),
-                        const SizedBox(height: 10),
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text("Schedule Priority",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15)),
-                              const SizedBox(height: 10),
-                              Text(schedulePriority)
-                            ]),
-                        const SizedBox(height: 10),
-                        const Divider(),
-                        const SizedBox(height: 10),
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text("Description",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15)),
-                              const SizedBox(height: 10),
-                              Text(description)
-                            ]),
+
                         const SizedBox(height: 10),
                         const Divider(),
                         const SizedBox(height: 10),
