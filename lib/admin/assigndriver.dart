@@ -6,26 +6,25 @@ import '../constants/app_colors.dart';
 import '../controller/requestscontroller.dart';
 
 class AssignDriver extends StatefulWidget {
-  final slug;
+
   final driver;
   final ride;
   final title;
   final assignedDriver;
   final passenger;
-  const AssignDriver({Key? key,required this.slug,required this.driver,required this.ride,required this.title,required this.assignedDriver,required this.passenger}) : super(key: key);
+  const AssignDriver({Key? key,required this.driver,required this.ride,required this.title,required this.assignedDriver,required this.passenger}) : super(key: key);
 
   @override
-  State<AssignDriver> createState() => _AssignDriverState(slug:this.slug, driver:this.driver,ride:this.ride,title:this.title,assignedDriver:this.assignedDriver,passenger:this.passenger);
+  State<AssignDriver> createState() => _AssignDriverState( driver:this.driver,ride:this.ride,title:this.title,assignedDriver:this.assignedDriver,passenger:this.passenger);
 }
 
 class _AssignDriverState extends State<AssignDriver> {
-  final slug;
   final driver;
   final ride;
   final title;
   final assignedDriver;
   final passenger;
-  _AssignDriverState({required this.slug,required this.driver,required this.ride,required this.title,required this.assignedDriver,required this.passenger});
+  _AssignDriverState({required this.driver,required this.ride,required this.title,required this.assignedDriver,required this.passenger});
   final RequestController controller = Get.find();
   var items;
   var items2;
@@ -33,6 +32,7 @@ class _AssignDriverState extends State<AssignDriver> {
   @override
   void initState(){
     super.initState();
+    print(driver);
     // print(controller.allDrivers);
     // print(controller.allAssignedDrivers);
   }
@@ -102,7 +102,7 @@ class _AssignDriverState extends State<AssignDriver> {
                                       const SizedBox(height:20),
                                       RawMaterialButton(
                                         onPressed: () {
-                                          controller.handleAssignToDriver(controller.allDrivers[index]['user'].toString(),slug,passenger,ride);
+                                          controller.handleAssignToDriver(controller.allDrivers[index]['user'].toString(),passenger,ride);
                                           Get.snackbar("Hurray", "${controller.allDrivers[index]['username']} is now the assigned driver.Please wait for at least two for this to take effect",
                                               duration: const Duration(seconds: 8),
                                               snackPosition: SnackPosition.BOTTOM,

@@ -58,7 +58,7 @@ class _AllRequestsState extends State<AllRequests> {
 
     scheduleController.getActiveSchedules();
     scheduleController.getAllSchedules();
-    scheduleController.getOneTimeSchedules();
+    scheduleController.getShortTripSchedules();
     scheduleController.getDailySchedules();
     scheduleController.getDaysSchedules();
     scheduleController.getWeeklySchedules();
@@ -66,7 +66,7 @@ class _AllRequestsState extends State<AllRequests> {
     _timer = Timer.periodic(const Duration(seconds: 20), (timer) {
       scheduleController.getActiveSchedules();
       scheduleController.getAllSchedules();
-      scheduleController.getOneTimeSchedules();
+      scheduleController.getShortTripSchedules();
       scheduleController.getDailySchedules();
       scheduleController.getDaysSchedules();
       scheduleController.getWeeklySchedules();
@@ -147,7 +147,7 @@ class _AllRequestsState extends State<AllRequests> {
                                                                 ),
                                                                 child: ListTile(
                                                                     onTap: (){
-                                                                      Get.to(()=> ScheduleDetail(slug:scheduleController.activeSchedules[index]['slug'],title:scheduleController.activeSchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
+                                                                      Get.to(()=> ScheduleDetail(title:scheduleController.activeSchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
                                                                     },
                                                                     leading: const Icon(Icons.access_time_filled),
                                                                     title: Text(items['get_passenger_name'],style:const TextStyle(fontWeight: FontWeight.bold)),
@@ -223,9 +223,9 @@ class _AllRequestsState extends State<AllRequests> {
                                                   SizedBox(
                                                       height: 600,
                                                       child:  ListView.builder(
-                                                          itemCount: scheduleController.allOneTimeSchedules != null ? scheduleController.allOneTimeSchedules.length : 0,
+                                                          itemCount: scheduleController.allShortTripsSchedules != null ? scheduleController.allShortTripsSchedules.length : 0,
                                                           itemBuilder: (context,index){
-                                                            items = scheduleController.allOneTimeSchedules[index];
+                                                            items = scheduleController.allShortTripsSchedules[index];
                                                             return Padding(
                                                               padding: const EdgeInsets.only(left: 10, right: 10,),
                                                               child: SlideInUp(
@@ -237,7 +237,7 @@ class _AllRequestsState extends State<AllRequests> {
                                                                     ),
                                                                     child: ListTile(
                                                                         onTap: (){
-                                                                          Get.to(()=> ScheduleDetail(slug:scheduleController.allOneTimeSchedules[index]['slug'],title:scheduleController.allOneTimeSchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
+                                                                          Get.to(()=> ScheduleDetail(title:scheduleController.allShortTripsSchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
                                                                           // Navigator.pop(context);
                                                                         },
                                                                         leading: const Icon(Icons.access_time_filled),
@@ -273,12 +273,12 @@ class _AllRequestsState extends State<AllRequests> {
                                                     children: [
                                                       const Icon(FontAwesomeIcons.fire,color: primaryColor,),
                                                       GetBuilder<RequestController>(builder: (controller){
-                                                        return Text("${scheduleController.allOneTimeSchedules.length}",style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: pearl),);
+                                                        return Text("${scheduleController.allShortTripsSchedules.length}",style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: pearl),);
                                                       })
                                                     ],
                                                   ),
                                                   const SizedBox(height: 10,),
-                                                  const Text("One Time",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: pearl),)
+                                                  const Text("Short Trip",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: pearl),)
                                                 ],
                                               ),
                                             ),
@@ -325,7 +325,7 @@ class _AllRequestsState extends State<AllRequests> {
                                                                 ),
                                                                 child: ListTile(
                                                                     onTap: (){
-                                                                      Get.to(()=> ScheduleDetail(slug:scheduleController.allDailySchedules[index]['slug'],title:scheduleController.allDailySchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
+                                                                      Get.to(()=> ScheduleDetail(title:scheduleController.allDailySchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
                                                                     },
                                                                     leading: const Icon(Icons.access_time_filled),
                                                                     title: Text(items['get_passenger_name'],style:const TextStyle(fontWeight: FontWeight.bold)),
@@ -404,7 +404,7 @@ class _AllRequestsState extends State<AllRequests> {
                                                                 ),
                                                                 child: ListTile(
                                                                     onTap: (){
-                                                                      Get.to(()=> ScheduleDetail(slug:scheduleController.allDaysSchedules[index]['slug'],title:scheduleController.allDaysSchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
+                                                                      Get.to(()=> ScheduleDetail(title:scheduleController.allDaysSchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
                                                                     },
                                                                     leading: const Icon(Icons.access_time_filled),
                                                                     title: Text(items['get_passenger_name'],style:const TextStyle(fontWeight: FontWeight.bold)),
@@ -493,7 +493,7 @@ class _AllRequestsState extends State<AllRequests> {
                                                                     ),
                                                                     child: ListTile(
                                                                         onTap: (){
-                                                                          Get.to(()=> ScheduleDetail(slug:scheduleController.allWeeklySchedules[index]['slug'],title:scheduleController.allWeeklySchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
+                                                                          Get.to(()=> ScheduleDetail(title:scheduleController.allWeeklySchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
                                                                           // Navigator.pop(context);
                                                                         },
                                                                         leading: const Icon(Icons.access_time_filled),
@@ -576,7 +576,7 @@ class _AllRequestsState extends State<AllRequests> {
                                                                     ),
                                                                     child: ListTile(
                                                                         onTap: (){
-                                                                          Get.to(()=> ScheduleDetail(slug:scheduleController.allMonthlySchedules[index]['slug'],title:scheduleController.allMonthlySchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
+                                                                          Get.to(()=> ScheduleDetail(title:scheduleController.allMonthlySchedules[index]['get_passenger_name'],id:scheduleController.allSchedules[index]['id'].toString()));
                                                                           // Navigator.pop(context);
                                                                         },
                                                                         leading: const Icon(Icons.access_time_filled),

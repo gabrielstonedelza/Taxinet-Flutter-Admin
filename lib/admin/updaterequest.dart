@@ -7,26 +7,24 @@ import '../constants/app_colors.dart';
 import 'package:http/http.dart' as http;
 
 class UpdateRequest extends StatefulWidget {
-  final slug;
   final passenger;
   final ride;
   final title;
   final price;
   final charge;
-  const UpdateRequest({Key? key,required this.slug,required this.passenger,required this.ride,required this.title,required this.price, required this.charge}) : super(key: key);
+  const UpdateRequest({Key? key,required this.passenger,required this.ride,required this.title,required this.price, required this.charge}) : super(key: key);
 
   @override
-  State<UpdateRequest> createState() => _UpdateRequestState(slug:this.slug, passenger:this.passenger,ride:this.ride,title:this.title,price:this.price, charge:this.charge);
+  State<UpdateRequest> createState() => _UpdateRequestState( passenger:this.passenger,ride:this.ride,title:this.title,price:this.price, charge:this.charge);
 }
 
 class _UpdateRequestState extends State<UpdateRequest> {
-  final slug;
   final passenger;
   final ride;
   final title;
   final price;
   final charge;
-  _UpdateRequestState({required this.slug,required this.passenger,required this.ride,required this.title,required this.price, required this.charge});
+  _UpdateRequestState({required this.passenger,required this.ride,required this.title,required this.price, required this.charge});
   final storage = GetStorage();
   var username = "";
   String uToken = "";
@@ -57,7 +55,7 @@ class _UpdateRequestState extends State<UpdateRequest> {
   }
 
   updateRide()async {
-    final requestUrl = "https://taxinetghana.xyz/admin_update_requested_ride/$slug/";
+    final requestUrl = "https://taxinetghana.xyz/admin_update_requested_ride/$ride/";
     final myLink = Uri.parse(requestUrl);
     final response = await http.put(myLink, headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -106,6 +104,7 @@ class _UpdateRequestState extends State<UpdateRequest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         title: Text("Update $title's price", style: const TextStyle(color: defaultTextColor2,fontSize: 15)),
         centerTitle: true,
@@ -132,13 +131,13 @@ class _UpdateRequestState extends State<UpdateRequest> {
                       focusNode: _priceFocusNode,
                       decoration: InputDecoration(
                           labelText:
-                          price,
+                          "Initial price is $price",
                           labelStyle:
                           const TextStyle(
                               color:
-                              muted),
+                              Colors.red),
                           focusColor:
-                          muted,
+                          Colors.black,
                           fillColor:
                           muted,
                           focusedBorder: OutlineInputBorder(
@@ -172,7 +171,7 @@ class _UpdateRequestState extends State<UpdateRequest> {
                       focusNode: _chargeFocusNode,
                       decoration: InputDecoration(
                           labelText:
-                          charge,
+                          "Initial charge is $charge",
                           labelStyle:
                           const TextStyle(
                               color:

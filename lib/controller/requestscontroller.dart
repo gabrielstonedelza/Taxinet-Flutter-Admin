@@ -16,7 +16,7 @@ class RequestController extends GetxController{
   String uToken = "";
   List activeSchedules = [];
   List allSchedules = [];
-  List allOneTimeSchedules = [];
+  List allShortTripsSchedules = [];
   List allDailySchedules = [];
   List allWeeklySchedules = [];
   List allDaysSchedules = [];
@@ -88,10 +88,10 @@ class RequestController extends GetxController{
   }
 
   //drivers schedules by types
-  Future<void> getOneTimeSchedules() async {
+  Future<void> getShortTripSchedules() async {
     try {
       isLoading = true;
-      const walletUrl = "https://taxinetghana.xyz/admin_get_scheduled_for_one_time/";
+      const walletUrl = "https://taxinetghana.xyz/admin_get_scheduled_for_short_trips/";
       var link = Uri.parse(walletUrl);
       http.Response response = await http.get(link, headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -99,7 +99,7 @@ class RequestController extends GetxController{
       });
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
-        allOneTimeSchedules.assignAll(jsonData);
+        allShortTripsSchedules.assignAll(jsonData);
         update();
       }
     } catch (e) {
@@ -298,9 +298,9 @@ class RequestController extends GetxController{
     }
   }
 
-  handleAssignToDriver(String driver,String slug,String passenger,String ride) async {
+  handleAssignToDriver(String driver,String passenger,String ride) async {
     handleAddToAssignedDrivers(driver,ride);
-    final loginUrl = "https://taxinetghana.xyz/admin_update_requested_ride/$slug/";
+    final loginUrl = "https://taxinetghana.xyz/admin_update_requested_ride/$ride/";
     final handleAdminUrl = Uri.parse(loginUrl);
 
     http.Response response = await http.put(handleAdminUrl,
@@ -316,8 +316,8 @@ class RequestController extends GetxController{
     }
   }
 
-  handleUnAssignToDriver(String ride,String slug,String passenger) async {
-    final loginUrl = "https://taxinetghana.xyz/admin_update_requested_ride/$slug/";
+  handleUnAssignToDriver(String ride,String passenger) async {
+    final loginUrl = "https://taxinetghana.xyz/admin_update_requested_ride/$ride/";
     final handleAdminUrl = Uri.parse(loginUrl);
 
     http.Response response = await http.put(handleAdminUrl,

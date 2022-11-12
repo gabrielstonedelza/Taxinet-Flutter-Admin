@@ -43,25 +43,26 @@ class _AllUnReadSchedulesState extends State<AllUnReadSchedules> {
           )
         ],
       ),
-      body: ListView.builder(
-        itemCount: controller.allSchedules != null ? controller.allSchedules.length : 0,
-        itemBuilder: (BuildContext context, int index) {
-          items = controller.allSchedules[index];
-          return Column(
-            children: [
-              const SizedBox(height: 10,),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                child: SlideInUp(
-                  animate: true,
-                  child: items['read'] == "Not Read" ? Card(
-                    elevation: 12,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: ListTile(
-                      leading:Image.asset("assets/images/clock.png",width:40,height: 40),
-                      title: Text(items['get_passenger_name'],style:const TextStyle(fontWeight: FontWeight.bold)),
+      body: GetBuilder<RequestController>(builder:(controller){
+        return ListView.builder(
+          itemCount: controller.allSchedules != null ? controller.allSchedules.length : 0,
+          itemBuilder: (BuildContext context, int index) {
+            items = controller.allSchedules[index];
+            return Column(
+              children: [
+                const SizedBox(height: 10,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: SlideInUp(
+                    animate: true,
+                    child: items['read'] == "Not Read" ? Card(
+                      elevation: 12,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: ListTile(
+                        leading:Image.asset("assets/images/clock.png",width:40,height: 40),
+                        title: Text(items['get_passenger_name'],style:const TextStyle(fontWeight: FontWeight.bold)),
                         subtitle: Padding(
                           padding: const EdgeInsets.only(top:10.0),
                           child: Column(
@@ -73,18 +74,20 @@ class _AllUnReadSchedulesState extends State<AllUnReadSchedules> {
                             ],
                           ),
                         ),
-                      onTap: (){
-                        Get.to(()=> ScheduleDetail(slug:controller.allSchedules[index]['slug'],title:controller.allSchedules[index]['get_passenger_name'],id:controller.allSchedules[index]['id'].toString()));
-                      },
-                    ),
-                  ) : Container(),
-                ),
-              )
-            ],
-          );
-        },
+                        onTap: (){
 
-      ),
+                          Get.to(()=> ScheduleDetail(title:controller.allSchedules[index]['get_passenger_name'],id:controller.allSchedules[index]['id'].toString()));
+                        },
+                      ),
+                    ) : Container(),
+                  ),
+                )
+              ],
+            );
+          },
+
+        );
+      }),
       floatingActionButton:FloatingActionButton(
         backgroundColor: Colors.black,
         onPressed: (){

@@ -161,7 +161,7 @@ class _DashboardState extends State<Dashboard> {
     notificationController.getAllUnReadNotifications(uToken);
     requestController.getActiveSchedules();
     requestController.getAllSchedules();
-    requestController.getOneTimeSchedules();
+    requestController.getShortTripSchedules();
     requestController.getDailySchedules();
     requestController.getDaysSchedules();
     requestController.getWeeklySchedules();
@@ -187,7 +187,7 @@ class _DashboardState extends State<Dashboard> {
       notificationController.getAllUnReadNotifications(uToken);
       requestController.getActiveSchedules();
       requestController.getAllSchedules();
-      requestController.getOneTimeSchedules();
+      requestController.getShortTripSchedules();
       requestController.getDailySchedules();
       requestController.getDaysSchedules();
       requestController.getWeeklySchedules();

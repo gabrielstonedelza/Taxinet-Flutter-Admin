@@ -114,7 +114,7 @@ class _SearchRequestsState extends State<SearchRequests> {
                             ),
                             child: ListTile(
                               onTap: (){
-                                Get.to(()=> ScheduleDetail(slug:rideUsers[index]['slug'],title:rideUsers[index]['schedule_title'],id:rideUsers[index]['id'].toString()));
+                                Get.to(()=> ScheduleDetail(title:rideUsers[index]['schedule_title'],id:rideUsers[index]['id'].toString()));
                               },
                               title: Padding(
                                 padding: const EdgeInsets.only(bottom:10.0,top:10),

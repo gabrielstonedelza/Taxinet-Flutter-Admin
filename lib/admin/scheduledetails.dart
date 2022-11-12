@@ -18,27 +18,26 @@ import 'assigndriver.dart';
 enum PaymentMethodEnum { wallet, cash }
 
 class ScheduleDetail extends StatefulWidget {
-  final slug;
   final title;
   final id;
   const ScheduleDetail(
-      {Key? key, required this.slug, required this.title, required this.id})
+      {Key? key,required this.title, required this.id})
       : super(key: key);
 
   @override
   State<ScheduleDetail> createState() => _ScheduleDetailState(
-    slug: this.slug,
+
     title: this.title,
     id: this.id,
   );
 }
 
 class _ScheduleDetailState extends State<ScheduleDetail> {
-  final slug;
+
   final title;
   final id;
   _ScheduleDetailState(
-      {required this.slug, required this.title, required this.id});
+      { required this.title, required this.id});
   bool isPosting = false;
   bool isStartingTrip = false;
   bool isEndingTrip = false;
@@ -123,6 +122,7 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
       username = storage.read("username");
     }
     getDetailSchedule();
+    print(driversId);
   }
 
   @override
@@ -176,13 +176,13 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
                                 children: [
                                   TextButton(
                                       onPressed: () {
-                                        Get.to(()=> UpdateRequest(slug:slug,passenger:passengerId,ride:scheduleRideId,title:title,price:price,charge:charge));
+                                        Get.to(()=> UpdateRequest(passenger:passengerId,ride:scheduleRideId,title:title,price:price,charge:charge, ));
                                       },
                                       child: const Text("Update")
                                   ),
                                   TextButton(
                                       onPressed: () {
-                                        Get.to(()=> AssignDriver(slug:slug,driver:driversId,ride:scheduleRideId,title:title,assignedDriver:assignedDriver,passenger:passengerId));
+                                        Get.to(()=> AssignDriver(driver:driversId,ride:scheduleRideId,title:title,assignedDriver:assignedDriver,passenger:passengerId));
                                       },
                                       child: const Text("Assign Driver")
                                   ),
@@ -212,7 +212,7 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
                                                       const SizedBox(height:20),
                                                       RawMaterialButton(
                                                         onPressed: () {
-                                                          controller.handleUnAssignToDriver(scheduleRideId,slug,passengerId);
+                                                          controller.handleUnAssignToDriver(scheduleRideId,passengerId);
                                                           Get.snackbar("Success", "you have set the default to admin,it will take at least two minutes to take effect",
                                                               duration: const Duration(seconds: 5),
                                                               snackPosition: SnackPosition.BOTTOM,
