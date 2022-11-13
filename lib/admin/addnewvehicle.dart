@@ -379,7 +379,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
           duration: const Duration(seconds: 5),
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: primaryColor,
-          colorText: defaultTextColor1);
+          colorText: defaultTextColor2);
       setState(() {
         currentSelectedStatus = "Inactive";
         currentSelectedBrand = "Toyota";
@@ -405,7 +405,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
           duration: const Duration(seconds: 5),
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
-          colorText: defaultTextColor1);
+          colorText: defaultTextColor2);
     }
   }
 
@@ -415,9 +415,9 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
   Widget build(BuildContext context) {
     Size size  = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: primaryColor,
+      // backgroundColor: primaryColor,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: primaryColor,
         elevation: 0,
         title: const Text("Add new vehicle"),
       ),
@@ -430,7 +430,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Select Status",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor1)),
+                  const Text("Select Status",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor2)),
                   const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
@@ -445,7 +445,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           isExpanded: true,
                           underline: const SizedBox(),
                           style: const TextStyle(
-                              color: defaultTextColor1, fontSize: 20),
+                              color: defaultTextColor2, fontSize: 20),
                           items: vehicleStatus.map((dropDownStringItem) {
                             return DropdownMenuItem(
                               value: dropDownStringItem,
@@ -461,7 +461,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Text("Select Brand",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor1)),
+                  const Text("Select Brand",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor2)),
                   const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
@@ -476,7 +476,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           isExpanded: true,
                           underline: const SizedBox(),
                           style: const TextStyle(
-                              color: defaultTextColor1, fontSize: 20),
+                              color: defaultTextColor2, fontSize: 20),
                           items: vehicleBrands.map((dropDownStringItem) {
                             return DropdownMenuItem(
                               value: dropDownStringItem,
@@ -508,10 +508,10 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: "Enter model",
-                            hintStyle: TextStyle(color: defaultTextColor1,),
+                            hintStyle: TextStyle(color: defaultTextColor2,),
                           ),
-                          cursorColor: defaultTextColor1,
-                          style: const TextStyle(color: defaultTextColor1),
+                          cursorColor: defaultTextColor2,
+                          style: const TextStyle(color: defaultTextColor2),
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           validator: (value){
@@ -527,7 +527,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Text("Select Color",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor1)),
+                  const Text("Select Color",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor2)),
                   const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
@@ -542,7 +542,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           isExpanded: true,
                           underline: const SizedBox(),
                           style: const TextStyle(
-                              color: defaultTextColor1, fontSize: 20),
+                              color: defaultTextColor2, fontSize: 20),
                           items: colorChoices.map((dropDownStringItem) {
                             return DropdownMenuItem(
                               value: dropDownStringItem,
@@ -566,7 +566,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                       cursorRadius: const Radius.elliptical(10, 10),
                       cursorWidth: 10,
                       readOnly: true,
-                      style: const TextStyle(color: defaultTextColor1),
+                      style: const TextStyle(color: defaultTextColor2),
                       decoration: InputDecoration(
                           suffixIcon: IconButton(
                             icon: const Icon(Icons.event,color: secondaryColor,),
@@ -585,7 +585,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                             },
                           ),
                           labelText: "click on icon to pick year",
-                          labelStyle: const TextStyle(color: defaultTextColor1),
+                          labelStyle: const TextStyle(color: defaultTextColor2),
                           focusColor: primaryColor,
                           fillColor: primaryColor,
                           focusedBorder: OutlineInputBorder(
@@ -619,10 +619,10 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: "Enter license plate number",
-                            hintStyle: TextStyle(color: defaultTextColor1,),
+                            hintStyle: TextStyle(color: defaultTextColor2,),
                           ),
-                          cursorColor: defaultTextColor1,
-                          style: const TextStyle(color: defaultTextColor1),
+                          cursorColor: defaultTextColor2,
+                          style: const TextStyle(color: defaultTextColor2),
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           validator: (value){
@@ -654,10 +654,10 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: "Enter vin",
-                            hintStyle: TextStyle(color: defaultTextColor1,),
+                            hintStyle: TextStyle(color: defaultTextColor2,),
                           ),
-                          cursorColor: defaultTextColor1,
-                          style: const TextStyle(color: defaultTextColor1),
+                          cursorColor: defaultTextColor2,
+                          style: const TextStyle(color: defaultTextColor2),
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
                           validator: (value){
@@ -689,10 +689,10 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: "Enter body number",
-                            hintStyle: TextStyle(color: defaultTextColor1,),
+                            hintStyle: TextStyle(color: defaultTextColor2,),
                           ),
-                          cursorColor: defaultTextColor1,
-                          style: const TextStyle(color: defaultTextColor1),
+                          cursorColor: defaultTextColor2,
+                          style: const TextStyle(color: defaultTextColor2),
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
                           validator: (value){
@@ -724,10 +724,10 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: "Enter registration certificate number",
-                            hintStyle: TextStyle(color: defaultTextColor1,),
+                            hintStyle: TextStyle(color: defaultTextColor2,),
                           ),
-                          cursorColor: defaultTextColor1,
-                          style: const TextStyle(color: defaultTextColor1),
+                          cursorColor: defaultTextColor2,
+                          style: const TextStyle(color: defaultTextColor2),
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           validator: (value){
@@ -759,10 +759,10 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: "Enter taxi license number",
-                            hintStyle: TextStyle(color: defaultTextColor1,),
+                            hintStyle: TextStyle(color: defaultTextColor2,),
                           ),
-                          cursorColor: defaultTextColor1,
-                          style: const TextStyle(color: defaultTextColor1),
+                          cursorColor: defaultTextColor2,
+                          style: const TextStyle(color: defaultTextColor2),
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           validator: (value){
@@ -777,7 +777,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                       ),
                     ),
                   ),
-                  const Text("Select Transmission",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor1)),
+                  const Text("Select Transmission",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor2)),
                   const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
@@ -792,7 +792,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           isExpanded: true,
                           underline: const SizedBox(),
                           style: const TextStyle(
-                              color: defaultTextColor1, fontSize: 20),
+                              color: defaultTextColor2, fontSize: 20),
                           items: vehicleTransmissions.map((dropDownStringItem) {
                             return DropdownMenuItem(
                               value: dropDownStringItem,
@@ -808,7 +808,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Text("Select Boosters",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor1)),
+                  const Text("Select Boosters",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor2)),
                   const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
@@ -823,7 +823,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           isExpanded: true,
                           underline: const SizedBox(),
                           style: const TextStyle(
-                              color: defaultTextColor1, fontSize: 20),
+                              color: defaultTextColor2, fontSize: 20),
                           items: boosters.map((dropDownStringItem) {
                             return DropdownMenuItem(
                               value: dropDownStringItem,
@@ -839,7 +839,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Text("Select child safety seats",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor1)),
+                  const Text("Select child safety seats",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor2)),
                   const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
@@ -854,7 +854,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           isExpanded: true,
                           underline: const SizedBox(),
                           style: const TextStyle(
-                              color: defaultTextColor1, fontSize: 20),
+                              color: defaultTextColor2, fontSize: 20),
                           items: safetySeats.map((dropDownStringItem) {
                             return DropdownMenuItem(
                               value: dropDownStringItem,
@@ -886,10 +886,10 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: "Enter code name",
-                            hintStyle: TextStyle(color: defaultTextColor1,),
+                            hintStyle: TextStyle(color: defaultTextColor2,),
                           ),
-                          cursorColor: defaultTextColor1,
-                          style: const TextStyle(color: defaultTextColor1),
+                          cursorColor: defaultTextColor2,
+                          style: const TextStyle(color: defaultTextColor2),
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           validator: (value){
@@ -905,7 +905,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Text("Select category",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor1)),
+                  const Text("Select category",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: defaultTextColor2)),
                   const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
@@ -920,7 +920,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           isExpanded: true,
                           underline: const SizedBox(),
                           style: const TextStyle(
-                              color: defaultTextColor1, fontSize: 20),
+                              color: defaultTextColor2, fontSize: 20),
                           items: vehicleCategory.map((dropDownStringItem) {
                             return DropdownMenuItem(
                               value: dropDownStringItem,
@@ -952,7 +952,7 @@ class _AddNewVehicleState extends State<AddNewVehicle> {
                           registerVehicle();
                         } else {
                           Get.snackbar("Error", "Something went wrong",
-                              colorText: defaultTextColor1,
+                              colorText: defaultTextColor2,
                               snackPosition: SnackPosition.BOTTOM,
                               backgroundColor: Colors.red
                           );
