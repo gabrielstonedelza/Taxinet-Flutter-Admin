@@ -21,6 +21,7 @@ import '../controller/usercontroller.dart';
 import '../controller/userscontrollers.dart';
 import '../controller/vehiclecontroller.dart';
 import '../controller/walletcontroller.dart';
+import 'allusers.dart';
 import 'drivers.dart';
 import 'expensestoday.dart';
 import 'investors.dart';
@@ -167,6 +168,8 @@ class _DashboardState extends State<Dashboard> {
     requestController.getWeeklySchedules();
     requestController.getAllDrivers();
     requestController.getAllPassengers();
+    requestController.fetchUsers();
+    requestController.fetchBlockedUsers();
     requestController.getAllInvestors();
     requestController.getAllAssignedDrivers();
     userController.getUserProfile(uToken);
@@ -195,6 +198,8 @@ class _DashboardState extends State<Dashboard> {
       requestController.getAllPassengers();
       requestController.getAllInvestors();
       requestController.getAllAssignedDrivers();
+      requestController.fetchUsers();
+      requestController.fetchBlockedUsers();
       userController.getUserProfile(uToken);
       userController.getAllUsers();
       userController.getAllDrivers();
@@ -227,11 +232,21 @@ class _DashboardState extends State<Dashboard> {
                         })
                         ,
                         const SizedBox(height:20),
-                        IconButton(
-                          onPressed: (){
-                            Get.to(() => const SearchPage());
-                          },
-                          icon: const Icon(Icons.search, size:30, color:Colors.white),
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: (){
+                                Get.to(() => const SearchPage());
+                              },
+                              icon: const Icon(Icons.search, size:30, color:Colors.white),
+                            ),
+                            const SizedBox(width: 110),
+                            GestureDetector(
+                              onTap: (){
+                                Get.to(()=> const AllUsers());
+                              },
+                                child: Image.asset("assets/images/group.png",width:40,height:40,fit: BoxFit.cover,))
+                          ],
                         )
                       ],
                     )
