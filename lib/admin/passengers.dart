@@ -107,14 +107,6 @@ class _PassengersState extends State<Passengers> {
                                       subtitle: Text(items['referral'])
                                   ),
                                   const Divider(),
-                                  // const SizedBox(height:5),
-
-                                  const Divider(),
-                                  // const SizedBox(height:5),
-                                  ListTile(
-                                      title: const Text("Unique Code",),
-                                      subtitle: Text(items['unique_code'])
-                                  ),
                                 ],
                               )
                           )
