@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:taxinet_admin/admin/passengers.dart';
 import 'package:taxinet_admin/admin/payments.dart';
 import 'package:taxinet_admin/admin/searchpage.dart';
+import 'package:taxinet_admin/admin/sendsms.dart';
 import 'package:taxinet_admin/admin/unreadschedules.dart';
 import 'package:taxinet_admin/admin/userregistration.dart';
 import 'package:taxinet_admin/admin/wallets.dart';
@@ -141,6 +142,48 @@ class _DashboardState extends State<Dashboard> {
     if (response.statusCode == 200) {}
   }
 
+  bool hasAlertLocked = false;
+  int alertLockCount = 0;
+  int alertUnLockCount = 0;
+  int alertLock = 0;
+  final SendSmsController sendSms = SendSmsController();
+
+  List driversNumbers = ["+233547236997", "+233245086675", "+233509556768", "+233246873879", "+233244858459", "+233551300168", "+233243143292",
+  "+233244710522", "+233596842925"];
+  List driversTrackingNumbers = ["+233594095982", "+233594097253", "+233594163113", "+233594143106", "+233594140062", "+233594162360",
+  "+233594173115", "+233594140058", "+233594072852"];
+
+
+  void checkTheTime(){
+    var hour = DateTime.now().hour;
+    switch (hour) {
+    case 23:
+      if (alertLockCount == 0){
+        for(var i in driversNumbers){
+          sendSms.sendMySms(i, "Taxinet",
+              "Attention!,please be advised, your car will be locked in one hour time,thank you.");
+        }
+      }
+      setState(() {
+        alertLockCount = 1;
+      });
+      break;
+    case 00:
+      if (alertLock == 0){
+        for(var i in driversTrackingNumbers){
+          sendSms.sendMySms(i, "0244529353", "relay,1\%23#");
+        }
+        for(var i in driversNumbers){
+          sendSms.sendMySms(i, "Taxinet", "Attention!,your car is locked.");
+        }
+      }
+      setState(() {
+        alertLock = 1;
+      });
+      break;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -208,6 +251,7 @@ class _DashboardState extends State<Dashboard> {
       vehicleController.getAllVehicles();
       expensesController.getAllExpenses();
       expensesController.getAllExpensesToday();
+      checkTheTime();
     });
   }
 
