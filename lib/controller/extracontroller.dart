@@ -1,31 +1,28 @@
 import 'package:flutter/foundation.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:get_storage/get_storage.dart';
+import "package:get/get.dart";
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-class WalletController extends GetxController{
+class ExtraController extends GetxController{
   bool isLoading = true;
-  final storage = GetStorage();
-  var username = "";
-  String uToken = "";
-  List allWallets = [];
+  List allExtras = [];
 
 
 
-  Future<void> getAllWallet() async {
+  Future<void> getAllDriversExtras() async {
     try {
       isLoading = true;
       update();
-      const walletUrl = "https://taxinetghana.xyz/admin_get_all_users_wallet/";
+      const walletUrl = "https://taxinetghana.xyz/get_activated_work_extra/";
       var link = Uri.parse(walletUrl);
       http.Response response = await http.get(link, headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       });
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
-        allWallets = jsonData;
+        allExtras = jsonData;
+
         update();
       }
     } catch (e) {
@@ -37,5 +34,4 @@ class WalletController extends GetxController{
       update();
     }
   }
-
 }
