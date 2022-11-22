@@ -122,7 +122,7 @@ class _ScheduleDetailState extends State<ScheduleDetail> {
       username = storage.read("username");
     }
     getDetailSchedule();
-    print(driversId);
+    
   }
 
   @override

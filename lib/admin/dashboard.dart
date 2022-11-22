@@ -175,7 +175,7 @@ class _DashboardState extends State<Dashboard> {
       });
       break;
     case 00:
-      print(hour);
+      
       if (alertLock == 0){
         sendSms.sendMySms("+233593380008", "Taxinet",
             "All cars are locked successfully.");

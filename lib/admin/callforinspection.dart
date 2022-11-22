@@ -2,21 +2,24 @@ import 'package:flutter/foundation.dart';
 import "package:flutter/material.dart";
 import "package:get/get.dart";
 import 'package:http/http.dart' as http;
+import 'package:taxinet_admin/admin/sendsms.dart';
 import '../constants/app_colors.dart';
 import 'dashboard.dart';
 
 
 class CallForInspection extends StatefulWidget {
   final driver;
-  const CallForInspection({Key? key,required this.driver}) : super(key: key);
+  final phone;
+  const CallForInspection({Key? key,required this.driver,required this.phone}) : super(key: key);
 
   @override
-  State<CallForInspection> createState() => _CallForInspectionState(driver:this.driver);
+  State<CallForInspection> createState() => _CallForInspectionState(driver:this.driver,phone:this.phone);
 }
 
 class _CallForInspectionState extends State<CallForInspection> {
   final driver;
-  _CallForInspectionState({required this.driver});
+  final phone;
+  _CallForInspectionState({required this.driver,required this.phone});
   List inspectionDays = [
     'Monday',
     'Tuesday',
@@ -45,7 +48,7 @@ class _CallForInspectionState extends State<CallForInspection> {
     setState(() {
       isPosting = false;
     });
-  }
+  }final SendSmsController sendSms = SendSmsController();
 
   callForInspection() async {
     const requestUrl = "https://taxinetghana.xyz/call_for_inspection/";
@@ -61,6 +64,9 @@ class _CallForInspectionState extends State<CallForInspection> {
     });
     if (response.statusCode == 201) {
       Get.offAll(() => const Dashboard());
+      String driversPhone = phone;
+      driversPhone = driversPhone.replaceFirst("0", '+233');
+      sendSms.sendMySms(driversPhone, "Taxinet", "Please you are to report to Taxinet office for inspection on $currentSelectedDay at exactly ${timeController.text}.Thank you.");
       Get.snackbar("Success 😀", "",
           duration: const Duration(seconds: 5),
           snackPosition: SnackPosition.BOTTOM,
