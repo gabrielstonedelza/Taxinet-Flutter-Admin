@@ -175,7 +175,6 @@ class _DashboardState extends State<Dashboard> {
       });
       break;
     case 00:
-      
       if (alertLock == 0){
         sendSms.sendMySms("+233593380008", "Taxinet",
             "All cars are locked successfully.");
@@ -291,6 +290,7 @@ class _DashboardState extends State<Dashboard> {
                           ,
                           const SizedBox(height:20),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               IconButton(
                                 onPressed: (){
@@ -298,25 +298,36 @@ class _DashboardState extends State<Dashboard> {
                                 },
                                 icon: const Icon(Icons.search, size:30, color:Colors.white),
                               ),
-                              const SizedBox(width: 110),
+                              const SizedBox(width: 70),
                               GestureDetector(
                                 onTap: (){
                                   Get.to(()=> const AllUsers());
                                 },
                                   child: Image.asset("assets/images/group.png",width:40,height:40,fit: BoxFit.cover,)),
-                              // TextButton(
-                              //   onPressed: () {
-                              //     sendSms.sendMySms("+233593380008", "Taxinet",
-                              //         "All cars are locked successfully.");
-                              //     for(var i in driversTrackingNumbers){
-                              //       sendSms.sendMySms(i, "0244529353", "relay,1\%23#");
-                              //     }
-                              //     for(var i in driversNumbers){
-                              //       sendSms.sendMySms(i, "Taxinet", "Attention!,your car is locked.");
-                              //     }
-                              //   },
-                              //   child:const Text("Hi")
-                              // )
+                              const SizedBox(width: 40),
+                              TextButton(
+                                  onPressed: () {
+                                    for(var i in driversNumbers){
+                                      sendSms.sendMySms(i, "Taxinet",
+                                          "Attention!,please be advised, your car will be locked in one hour time,thank you.");
+                                    }
+                                  },
+                                  child:const Text("Alert",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black))
+                              ),
+                              const SizedBox(width: 10),
+                              TextButton(
+                                onPressed: () {
+                                  sendSms.sendMySms("+233593380008", "Taxinet",
+                                      "All cars are locked successfully.");
+                                  for(var i in driversTrackingNumbers){
+                                    sendSms.sendMySms(i, "0244529353", "relay,1\%23#");
+                                  }
+                                  for(var i in driversNumbers){
+                                    sendSms.sendMySms(i, "Taxinet", "Attention!,your car is locked.");
+                                  }
+                                },
+                                child:const Text("Lock",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),)
+                              ),
                             ],
                           )
                         ],
@@ -528,7 +539,7 @@ class _DashboardState extends State<Dashboard> {
                                 children: [
                                   Image.asset("assets/images/wallet.png",width:42),
                                   const SizedBox(height:20),
-                                  const Text("Wallets",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),)
+                                  const Text("Accounts Wallet",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),)
                                 ]
                             ),
                           ),
