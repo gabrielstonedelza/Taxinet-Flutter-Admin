@@ -9,6 +9,8 @@ import 'package:taxinet_admin/admin/passengers.dart';
 import 'package:taxinet_admin/admin/payments.dart';
 import 'package:taxinet_admin/admin/searchpage.dart';
 import 'package:taxinet_admin/admin/sendsms.dart';
+import 'package:taxinet_admin/admin/topups.dart';
+import 'package:taxinet_admin/admin/unlockcar.dart';
 import 'package:taxinet_admin/admin/unreadschedules.dart';
 import 'package:taxinet_admin/admin/userregistration.dart';
 import 'package:taxinet_admin/admin/wallets.dart';
@@ -20,6 +22,7 @@ import '../controller/extracontroller.dart';
 import '../controller/inventoriescontroller.dart';
 import '../controller/notificationcontroller.dart';
 import '../controller/requestscontroller.dart';
+import '../controller/topupcontroller.dart';
 import '../controller/usercontroller.dart';
 import '../controller/userscontrollers.dart';
 import '../controller/vehiclecontroller.dart';
@@ -49,6 +52,7 @@ class _DashboardState extends State<Dashboard> {
   final WalletController walletController = Get.find();
   final ExpensesController expensesController = Get.find();
   final ExtraController extraController = Get.find();
+  final TopUpController topUpController = Get.find();
 
   final storage = GetStorage();
 
@@ -153,11 +157,10 @@ class _DashboardState extends State<Dashboard> {
   int alertLock = 0;
   final SendSmsController sendSms = SendSmsController();
 
-  List driversNumbers = ["+233547236997", "+233245086675", "+233509556768", "+233246873879", "+233244858459", "+233551300168", "+233243143292",
-  "+233244710522", "+233596842925","+233552870497"];
+  List driversNumbers = ["+233547236997", "+233245086675", "+233509556768", "+233246873879", "+233244858459", "+233551300168", "+233243143292","+233241764586",
+  "+233244710522", "+233596842925","+233552870497","+233594140061"];
   List driversTrackingNumbers = ["+233594095982", "+233594097253", "+233594163113", "+233594143106", "+233594140062", "+233594162360",
-  "+233594173115", "+233594140058", "+233594072852","+233552870497"];
-
+  "+233594173115", "+233594140058", "+233594072852","+233552870497","+233594140061"];
 
   void checkTheTime(){
     var hour = DateTime.now().hour;
@@ -233,6 +236,7 @@ class _DashboardState extends State<Dashboard> {
     expensesController.getAllExpenses();
     expensesController.getAllExpensesToday();
     extraController.getAllDriversExtras();
+    topUpController.getAllTopUps();
 
     _timer = Timer.periodic(const Duration(seconds: 10), (timer) {
       inventoriesController.getAllInventories();
@@ -263,6 +267,7 @@ class _DashboardState extends State<Dashboard> {
       expensesController.getAllExpensesToday();
       extraController.getAllDriversExtras();
       checkTheTime();
+      topUpController.getAllTopUps();
     });
   }
 
@@ -298,36 +303,88 @@ class _DashboardState extends State<Dashboard> {
                                 },
                                 icon: const Icon(Icons.search, size:30, color:Colors.white),
                               ),
-                              const SizedBox(width: 70),
+                              const SizedBox(width: 10),
                               GestureDetector(
                                 onTap: (){
-                                  Get.to(()=> const AllUsers());
+                                  Get.to(()=> const AllTopUps());
                                 },
+                                  child: Image.asset("assets/images/prepaid.png",width:40,height:40,fit: BoxFit.cover,)),
+                              const SizedBox(width: 20),
+                              GestureDetector(
+                                  onTap: (){
+                                    Get.to(()=> const AllUsers());
+                                  },
                                   child: Image.asset("assets/images/group.png",width:40,height:40,fit: BoxFit.cover,)),
-                              const SizedBox(width: 40),
-                              TextButton(
-                                  onPressed: () {
+                              const SizedBox(width: 20),
+                              // TextButton(
+                              //     onPressed: () {
+                              //       for(var i in driversNumbers){
+                              //         sendSms.sendMySms(i, "Taxinet",
+                              //             "Attention!,please be advised, your car will be locked in one hour time,thank you.");
+                              //       }
+                              //       Get.snackbar("Success", "alert sent to all drivers.",
+                              //           duration: const Duration(seconds: 5),
+                              //           snackPosition: SnackPosition.BOTTOM,
+                              //           backgroundColor: primaryColor,
+                              //           colorText: defaultTextColor1);
+                              //     },
+                              //     child:const Text("Alert",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black))
+                              // ),
+                              GestureDetector(
+                                  onTap: (){
                                     for(var i in driversNumbers){
                                       sendSms.sendMySms(i, "Taxinet",
                                           "Attention!,please be advised, your car will be locked in one hour time,thank you.");
                                     }
+                                    Get.snackbar("Success", "alert sent to all drivers.",
+                                        duration: const Duration(seconds: 5),
+                                        snackPosition: SnackPosition.BOTTOM,
+                                        backgroundColor: primaryColor,
+                                        colorText: defaultTextColor1);
                                   },
-                                  child:const Text("Alert",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black))
-                              ),
-                              const SizedBox(width: 10),
-                              TextButton(
-                                onPressed: () {
-                                  sendSms.sendMySms("+233593380008", "Taxinet",
-                                      "All cars are locked successfully.");
-                                  for(var i in driversTrackingNumbers){
-                                    sendSms.sendMySms(i, "0244529353", "relay,1\%23#");
-                                  }
-                                  for(var i in driversNumbers){
-                                    sendSms.sendMySms(i, "Taxinet", "Attention!,your car is locked.");
-                                  }
-                                },
-                                child:const Text("Lock",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),)
-                              ),
+                                  child: Image.asset("assets/images/danger.png",width:40,height:40,fit: BoxFit.cover,)),
+                              const SizedBox(width: 20),
+                              // TextButton(
+                              //   onPressed: () {
+                              //     sendSms.sendMySms("+233593380008", "Taxinet",
+                              //         "All cars are locked successfully.");
+                              //     for(var i in driversTrackingNumbers){
+                              //       sendSms.sendMySms(i, "0244529353", "relay,1\%23#");
+                              //     }
+                              //     for(var i in driversNumbers){
+                              //       sendSms.sendMySms(i, "Taxinet", "Attention!,your car is locked.");
+                              //     }
+                              //     Get.snackbar("Success", "all cars are locked now.",
+                              //         duration: const Duration(seconds: 5),
+                              //         snackPosition: SnackPosition.BOTTOM,
+                              //         backgroundColor: primaryColor,
+                              //         colorText: defaultTextColor1);
+                              //   },
+                              //   child:const Text("Lock",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),)
+                              // ),
+                              GestureDetector(
+                                  onTap: (){
+                                    sendSms.sendMySms("+233593380008", "Taxinet",
+                                        "All cars are locked successfully.");
+                                    for(var i in driversTrackingNumbers){
+                                      sendSms.sendMySms(i, "0244529353", "relay,1\%23#");
+                                    }
+                                    for(var i in driversNumbers){
+                                      sendSms.sendMySms(i, "Taxinet", "Attention!,your car is locked.");
+                                    }
+                                    Get.snackbar("Success", "all cars are locked now.",
+                                        duration: const Duration(seconds: 5),
+                                        snackPosition: SnackPosition.BOTTOM,
+                                        backgroundColor: primaryColor,
+                                        colorText: defaultTextColor1);
+                                  },
+                                  child: Image.asset("assets/images/padlock2.png",width:40,height:40,fit: BoxFit.cover,)),
+                              const SizedBox(width: 20),
+                              GestureDetector(
+                                  onTap: (){
+                                    Get.to(()=> const UnlockCar());
+                                  },
+                                  child: Image.asset("assets/images/unlock1.png",width:40,height:40,fit: BoxFit.cover,)),
                             ],
                           )
                         ],

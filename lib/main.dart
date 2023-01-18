@@ -12,6 +12,7 @@ import 'controller/notificationcontroller.dart';
 import 'controller/paymentcontroller.dart';
 import 'controller/registrationcontroller.dart';
 import 'controller/requestscontroller.dart';
+import 'controller/topupcontroller.dart';
 import 'controller/usercontroller.dart';
 import 'controller/userscontrollers.dart';
 import 'controller/vehiclecontroller.dart';
@@ -34,6 +35,7 @@ void main()async {
   Get.put(ExpensesController());
   Get.put(MyRegistrationController());
   Get.put(ExtraController());
+  Get.put(TopUpController());
   runApp(const MyApp());
 }
 
