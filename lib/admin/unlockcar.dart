@@ -30,9 +30,9 @@ class _UnlockCarState extends State<UnlockCar> {
       ),
       body: GetBuilder<RequestController>(builder:(controller){
         return ListView.builder(
-            itemCount: controller.driversTrackerSims != null ? controller.driversTrackerSims.length : 0,
+            itemCount: controller.allDrivers != null ? controller.allDrivers.length : 0,
             itemBuilder: (BuildContext context, int index){
-              items = controller.driversTrackerSims[index];
+              items = controller.allDrivers[index];
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Card(
@@ -42,7 +42,7 @@ class _UnlockCarState extends State<UnlockCar> {
                     ),
                     child: ListTile(
                       onTap: (){
-                        sendSms.sendMySms(requestController.driversTrackerSims[index], "0244529353", "relay,1\%23#");
+                        sendSms.sendMySms(requestController.allDrivers[index], "0244529353", "relay,1\%23#");
                         Get.snackbar("Success", "${requestController.driversTrackerSims[index]} is unlocked now.",
                             duration: const Duration(seconds: 5),
                             snackPosition: SnackPosition.BOTTOM,
@@ -51,9 +51,15 @@ class _UnlockCarState extends State<UnlockCar> {
                       },
                       title: Padding(
                         padding: const EdgeInsets.only(bottom:10.0,top:10),
-                        child: Text(items,style: const TextStyle(fontWeight: FontWeight.bold)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(items['get_driver_tracker_sim_number'],style: const TextStyle(fontWeight: FontWeight.bold)),
+                            Text(items['username'],style: const TextStyle(fontWeight: FontWeight.bold)),
+                          ],
+                        ),
                       ),
-                      subtitle: const Padding(
+                      subtitle:  const Padding(
                         padding: EdgeInsets.only(bottom:8.0),
                         child: Text("Tap to unlock car."),
                       ),
