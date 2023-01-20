@@ -41,6 +41,7 @@ class _RegistrationState extends State<Registration> {
   late final TextEditingController _passwordController;
   late final TextEditingController _rePasswordController;
   late final TextEditingController _phoneNumberController;
+  late final TextEditingController _trackerSimController;
   final _formKey = GlobalKey<FormState>();
   bool isObscured = true;
   final FocusNode _usernameFocusNode = FocusNode();
@@ -49,6 +50,8 @@ class _RegistrationState extends State<Registration> {
   final FocusNode _passwordFocusNode = FocusNode();
   final FocusNode _rePasswordFocusNode = FocusNode();
   final FocusNode _phoneNumberFocusNode = FocusNode();
+  final FocusNode _trackerSimFocusNode = FocusNode();
+  bool isDriver = false;
 
   List userTypes = [
     "Passenger",
@@ -84,6 +87,7 @@ class _RegistrationState extends State<Registration> {
     _passwordController = TextEditingController();
     _rePasswordController = TextEditingController();
     _phoneNumberController = TextEditingController();
+    _trackerSimController = TextEditingController();
   }
 
   @override
@@ -143,6 +147,16 @@ class _RegistrationState extends State<Registration> {
                               }).toList(),
                               onChanged: (newValueSelected) {
                                 _onDropDownItemSelectedUserType(newValueSelected);
+                                if(newValueSelected == "Driver"){
+                                  setState(() {
+                                    isDriver = true;
+                                  });
+                                }
+                                else{
+                                  setState(() {
+                                    isDriver = false;
+                                  });
+                                }
                               },
                               value: _currentSelectedUserType,
                             ),
@@ -297,6 +311,45 @@ class _RegistrationState extends State<Registration> {
                     const SizedBox(
                       height: 15,
                     ),
+                   isDriver ?  Container(
+                      height: size.height * 0.08,
+                      width: size.width * 0.8,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[500]?.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(16)),
+                      child: Center(
+                        child: TextFormField(
+                          controller: _trackerSimController,
+                          focusNode: _trackerSimFocusNode,
+                          decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              prefixIcon: Icon(
+                                FontAwesomeIcons.phone,
+                                color: defaultTextColor1,
+                              ),
+                              hintText: "Tracker Number",
+                              hintStyle: TextStyle(color: defaultTextColor1)),
+                          cursorColor: defaultTextColor1,
+                          style: const TextStyle(color: defaultTextColor1),
+                          keyboardType: TextInputType.number,
+                          textInputAction: TextInputAction.next,
+                          validator: (value){
+                            if(value!.isEmpty){
+                              return "Enter Tracker Number";
+                            }
+                            if(value.length < 10){
+                              return "Enter a valid phone number";
+                            }
+                            else{
+                              return null;
+                            }
+                          },
+                        ),
+                      ),
+                    ) : Container(),
+                    const SizedBox(
+                      height: 15,
+                    ),
                     Container(
                       height: size.height * 0.08,
                       width: size.width * 0.8,
@@ -401,7 +454,13 @@ class _RegistrationState extends State<Registration> {
                         onPressed: () {
                           _startPosting();
                           if (_formKey.currentState!.validate()) {
-                            registerData.registerUser(_currentSelectedUserType,_usernameController.text.trim(),_emailController.text.trim(),_fullNameController.text.trim(),_phoneNumberController.text.trim(), _passwordController.text.trim(),_rePasswordController.text.trim(),username);
+                            if(isDriver){
+                              registerData.registerUser(_currentSelectedUserType,_usernameController.text.trim(),_emailController.text.trim(),_fullNameController.text.trim(),_phoneNumberController.text.trim(), _passwordController.text.trim(),_rePasswordController.text.trim(),username,_trackerSimController.text.trim());
+                            }
+                            else{
+                              registerData.registerUser(_currentSelectedUserType,_usernameController.text.trim(),_emailController.text.trim(),_fullNameController.text.trim(),_phoneNumberController.text.trim(), _passwordController.text.trim(),_rePasswordController.text.trim(),username,"");
+                            }
+
 
                           } else {
                             Get.snackbar("Error", "Something went wrong,check form",

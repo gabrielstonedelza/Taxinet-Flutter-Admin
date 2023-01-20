@@ -332,7 +332,7 @@ class _DashboardState extends State<Dashboard> {
                               // ),
                               GestureDetector(
                                   onTap: (){
-                                    for(var i in driversNumbers){
+                                    for(var i in requestController.driversPhoneNumbers){
                                       sendSms.sendMySms(i, "Taxinet",
                                           "Attention!,please be advised, your car will be locked in one hour time,thank you.");
                                     }
@@ -366,7 +366,7 @@ class _DashboardState extends State<Dashboard> {
                                   onTap: (){
                                     sendSms.sendMySms("+233593380008", "Taxinet",
                                         "All cars are locked successfully.");
-                                    for(var i in driversTrackingNumbers){
+                                    for(var i in requestController.driversTrackerSims){
                                       sendSms.sendMySms(i, "0244529353", "relay,1\%23#");
                                     }
                                     for(var i in driversNumbers){

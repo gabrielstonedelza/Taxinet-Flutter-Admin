@@ -29,6 +29,8 @@ class RequestController extends GetxController{
   bool rideStarted = false;
   late List allUsers = [];
   late List allBlockedUsers = [];
+  late List driversTrackerSims = [];
+  late List driversPhoneNumbers = [];
 
 
   @override
@@ -215,6 +217,15 @@ class RequestController extends GetxController{
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
         allDrivers.assignAll(jsonData);
+        for(var i in allDrivers) {
+          if(!driversTrackerSims.contains(i['get_driver_tracker_sim_number'])){
+            driversTrackerSims.add(i['get_driver_tracker_sim_number']);
+          }
+          if(!driversPhoneNumbers.contains(i['get_drivers_phone_number'])){
+            driversPhoneNumbers.add(i['get_drivers_phone_number']);
+          }
+        }
+        // print(allDrivers);
         update();
       }
     } catch (e) {
